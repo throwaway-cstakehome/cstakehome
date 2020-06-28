@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 const Checkbox = (props) => {
   let { checked, onChange, checkboxref } = props;

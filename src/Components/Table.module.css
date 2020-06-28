@@ -1,0 +1,33 @@
+.Container {
+  width: 75%;
+  margin: 0 auto;
+  border: 1px solid #F1F1F1;
+}
+
+.Table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+tr {
+  border-bottom: 1px solid #F1F1F1;
+}
+
+th {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.HeaderRow {
+  display: flex;
+  align-items: baseline;
+  border-bottom: 1px solid #F1F1F1;
+}
+
+.HeaderRow div {
+  min-width: 120px;
+  padding: 25px 45px 10px 10px;
+  font-size: 18px;
+}

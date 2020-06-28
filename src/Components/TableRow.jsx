@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
+
 import Checkbox from './Checkbox.jsx';
 import TableCell from './TableCell.jsx';
+
+import style from './TableRow.module.css';
 
 const TableRow = ({ data, onDataSelect, selected }) => {
   return (
@@ -8,7 +11,10 @@ const TableRow = ({ data, onDataSelect, selected }) => {
       {
         data.map(({ name, device, path, status }, i) => {
           return (
-            <tr key={i}>
+            <tr
+              className={`${style.Data} ${!!selected[name] ? style.Checked : ''}`}
+              key={i}
+            >
               <td>
                 { <Checkbox
                     name={name}
@@ -22,8 +28,9 @@ const TableRow = ({ data, onDataSelect, selected }) => {
               <td>
                 <TableCell data={device} />
               </td>
-              <td>
+              <td className={style.Status}>
                 <TableCell data={path} />
+                { status === 'available' ? <div className={style.AvailableStatus}/> : ''}
               </td>
               <td>
                 <TableCell data={status} />

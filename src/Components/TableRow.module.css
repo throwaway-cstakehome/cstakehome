@@ -1,0 +1,20 @@
+.Status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.AvailableStatus {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #80D133;
+}
+
+.Data:hover {
+  background-color: #F5F5F5;
+}
+
+.Checked {
+  background-color: #EEEEEE;
+}

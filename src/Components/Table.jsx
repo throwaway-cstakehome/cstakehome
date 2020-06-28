@@ -1,7 +1,9 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import TableHeader from './TableHeader.jsx';
 import TableRow from './TableRow.jsx';
 import Header from './Header.jsx';
+
+import style from './Table.module.css';
 
 const Table = ({ data }) => {
   const [selected, setSelected] = useState({});
@@ -10,11 +12,13 @@ const Table = ({ data }) => {
 
   const handleSelectData = (name) => {
     if(!(name in selected)) {
+      const selectedData = data.find((d) => d.name === name);
       setSelected({
         ...selected,
         [name]: {
           name,
-          isChecked: true
+          isChecked: true,
+          ...selectedData
         }
       })
     } else {
@@ -31,21 +35,31 @@ const Table = ({ data }) => {
     data.forEach((d) => {
       const { name } = d;
       allSelectedData[name] = {
-        name: name,
+        ...d,
         isChecked: true
       }
     })
 
+    // selects all check boxes
     if(selectedLength === 0) {
       setSelected(allSelectedData);
       setSelectAllCheckBox(!selectAllCheckBox);
+
+      // deselects all checkboxes
     } else if (selectedLength === 5) {
       setSelected({})
+
+      // corrects the value when clicking the select all checkbox 2 times.
       if(selectAllCheckBox) setSelectAllCheckBox(!selectAllCheckBox);
     } else {
+
+      // partial cases
+      // deselects data selectAllCheckBox was true
       if(selectAllCheckBox) {
         setSelected({})
       } else {
+
+        // selects all data selectAllCheckBox was false
         setSelected({
           ...allSelectedData
         })
@@ -55,17 +69,17 @@ const Table = ({ data }) => {
   }
 
   return (
-    <Fragment>
-      <table>
+    <div className={style.Container}>
+      <div className={style.HeaderRow}>
+        <Header
+          selectedCount={Object.keys(selected).length}
+          onSelectAllData={handleSelectAllData}
+          checked={selectAllCheckBox}
+          selected={selected}
+        />
+      </div>
+      <table className={style.Table}>
         <thead>
-          <tr>
-            <Header
-              selectedCount={Object.keys(selected).length}
-              onSelectAllData={handleSelectAllData}
-              checked={selectAllCheckBox}
-              selected={selected}
-            />
-          </tr>
           <tr>
             <TableHeader names={columnNames} />
           </tr>
@@ -74,7 +88,7 @@ const Table = ({ data }) => {
           <TableRow data={data} onDataSelect={handleSelectData} selected={selected} />
         </tbody>
       </table>
-    </Fragment>
+    </div>
   )
 };
 
