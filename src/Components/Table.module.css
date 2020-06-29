@@ -1,7 +1,5 @@
 .Container {
-  width: 75%;
   margin: 0 auto;
-  border: 1px solid #F1F1F1;
 }
 
 .Table {
@@ -28,6 +26,6 @@ th {
 
 .HeaderRow div {
   min-width: 120px;
-  padding: 25px 45px 10px 10px;
+  margin: 25px 135px 10px 20px;
   font-size: 18px;
 }

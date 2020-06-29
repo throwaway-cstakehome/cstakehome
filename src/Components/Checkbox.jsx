@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Checkbox = (props) => {
-  let { checked, onChange, checkboxref } = props;
+  let { checked, checkboxref } = props;
 
   return (
     <input
+      data-testid='checkbox'
       type="checkbox"
-      onChange={onChange}
       checked={checked}
       ref={checkboxref}
       {...props}

@@ -31,12 +31,13 @@ const Header = ({ selectedCount, onSelectAllData, selected, checked }) => {
   return (
     <Fragment>
       <Checkbox
+        data-testid='header-checkbox'
         onChange={onSelectAllData}
         checked={checked}
         checkboxref={checkboxRef}
       />
       <div> { selectedCount > 0 ? `Selected ${selectedCount}` : 'None Selected'} </div>
-      <div onClick={handleDownload}>
+      <div data-testid='download-button' onClick={handleDownload}>
         <img className={style.DownloadIcon} src={downloadIcon} alt='downloadicon'/>
         Download Selected
       </div>
